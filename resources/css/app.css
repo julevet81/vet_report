@@ -1,0 +1,177 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Cairo', 'IBM Plex Sans Arabic', 'Noto Sans Arabic', ui-sans-serif, system-ui, sans-serif;
+    --color-brand: #0b6e4f;
+    --color-brand-2: #0f9d58;
+    --color-highlight: #f39f18;
+    --color-bg-soft: #f5f7f2;
+}
+
+:root {
+    --topbar-h: 76px;
+    --footer-h: 56px;
+    --sidebar-w: 280px;
+    --layout-gap: 16px;
+}
+
+body {
+    background:
+        radial-gradient(circle at 10% 10%, rgb(15 157 88 / 12%), transparent 30%),
+        radial-gradient(circle at 90% 20%, rgb(243 159 24 / 10%), transparent 35%),
+        linear-gradient(180deg, #f8faf7 0%, #eef4ed 100%);
+    color: #1e293b;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.app-shell {
+    width: 100%;
+}
+
+.layout-top {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 40;
+    height: var(--topbar-h);
+    backdrop-filter: blur(8px);
+    background: rgb(255 255 255 / 88%);
+    border-bottom: 1px solid rgb(15 23 42 / 10%);
+}
+
+.layout-top-inner,
+.layout-footer-inner {
+    max-width: 1260px;
+    margin: 0 auto;
+    height: 100%;
+    padding-inline: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: .75rem;
+}
+
+.layout-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 40;
+    height: var(--footer-h);
+    background: rgb(15 23 42 / 92%);
+    color: #e2e8f0;
+    border-top: 1px solid rgb(255 255 255 / 12%);
+}
+
+.layout-sidebar {
+    position: fixed;
+    z-index: 30;
+    top: calc(var(--topbar-h) + var(--layout-gap));
+    bottom: calc(var(--footer-h) + var(--layout-gap));
+    inset-inline-start: var(--layout-gap);
+    width: var(--sidebar-w);
+    overflow: auto;
+}
+
+.layout-main {
+    margin-top: calc(var(--topbar-h) + var(--layout-gap));
+    margin-bottom: calc(var(--footer-h) + var(--layout-gap));
+    margin-inline-start: calc(var(--sidebar-w) + (var(--layout-gap) * 2));
+    padding-inline: 1rem;
+    max-width: calc(1260px - var(--sidebar-w));
+}
+
+.layout-main-guest {
+    margin-top: calc(var(--topbar-h) + var(--layout-gap));
+    margin-bottom: calc(var(--footer-h) + var(--layout-gap));
+    padding-inline: 1rem;
+    max-width: 980px;
+    margin-inline: auto;
+}
+
+.card {
+    background: rgb(255 255 255 / 90%);
+    border: 1px solid rgb(15 23 42 / 9%);
+    border-radius: 1rem;
+    box-shadow: 0 8px 30px rgb(15 23 42 / 8%);
+}
+
+.section-title {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: .75rem;
+    color: #0b6e4f;
+}
+
+.input {
+    width: 100%;
+    border: 1px solid #cbd5e1;
+    border-radius: .75rem;
+    padding: .6rem .75rem;
+    background: #fff;
+    outline: none;
+}
+
+.input:focus {
+    border-color: #0f9d58;
+    box-shadow: 0 0 0 3px rgb(15 157 88 / 15%);
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+    border-radius: .75rem;
+    padding: .6rem 1rem;
+    font-weight: 700;
+    transition: .2s ease;
+}
+
+.btn-primary {
+    color: #fff;
+    background: linear-gradient(135deg, #0b6e4f, #0f9d58);
+}
+
+.btn-primary:hover {
+    filter: brightness(1.05);
+}
+
+.btn-secondary {
+    color: #0f172a;
+    background: #e2e8f0;
+}
+
+.kpi {
+    border-radius: .9rem;
+    padding: .9rem;
+    background: linear-gradient(140deg, #ffffff, #f4faf5);
+    border: 1px solid rgb(15 157 88 / 15%);
+}
+
+@media (max-width: 1024px) {
+    .layout-sidebar {
+        position: static;
+        width: auto;
+        margin: calc(var(--topbar-h) + var(--layout-gap)) 1rem 0;
+        max-height: none;
+    }
+
+    .layout-main {
+        margin: 1rem;
+        margin-bottom: calc(var(--footer-h) + var(--layout-gap));
+        max-width: none;
+    }
+
+    .layout-main-guest {
+        margin-top: calc(var(--topbar-h) + var(--layout-gap));
+        margin-inline: 1rem;
+    }
+}
